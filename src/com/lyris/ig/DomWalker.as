@@ -12,30 +12,33 @@ package com.lyris.ig
 	
 	import mx.core.UIComponent;
 	
-	public class XmlDumper
+	public class DomWalker
 	{
-		
-		
 		private var _root:DisplayObject;
-		public function XmlDumper(root:DisplayObject)
+		private var _xmlRepresentation:XML;
+		private var _uidMap:Object;
+		
+		public function DomWalker(root:DisplayObject)
 		{
 			_root = root;
+			_uidMap = new Object();
 		}
 		
-		public function dump():XML {
-			trace('dumping...');
-			
-			var xml:XML = convertDisplayObjectToXmlTree( _root );
-			
-//			trace( xml.toXMLString() );
-			
-			trace('...dump complete'); 
-			
-			return xml;
+		public function get domAsXML():XML{ return _xmlRepresentation; }
+		
+		public function discoverDom():void {
+			trace('walking DOM...');
+			_xmlRepresentation = convertDisplayObjectToXmlTree( _root );
+			trace('...walk complete'); 
+		}
+		
+		public function getElementByUid(uid:String):DisplayObject {
+			return _uidMap[uid] as DisplayObject;
 		}
 		
 		private function convertDisplayObjectToXmlTree(displayObject:DisplayObject):XML {
 			var rootXmlNode:XML = representDisplayObjectAsXml( displayObject );
+			registerDisplayObject( displayObject, rootXmlNode );
 			
 			var children:Array = getDisplayObjectChildren(displayObject);
 			
@@ -50,6 +53,13 @@ package com.lyris.ig
 		private function representDisplayObjectAsXml(displayObject:DisplayObject):XML {
 			var converter:DisplayObjectToXmlConverter = new DisplayObjectToXmlConverter(displayObject);
 			return converter.convert();
+		}
+		
+		private function registerDisplayObject(displayObject:DisplayObject,xmlRepresentation:XML):void {
+			var uid:String = xmlRepresentation.@uid;
+			if( null != uid && '' != uid ) {
+				_uidMap[uid] = displayObject;
+			}
 		}
 		
 		private function getDisplayObjectChildren(displayObject:DisplayObject):Array {
