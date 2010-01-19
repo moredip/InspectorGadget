@@ -83,7 +83,7 @@ package com.lyris.ig
 			try {
 				var value:Object = getObjectPropertyValue(name, ns);
 				return {name:name,value:value};
-			} catch (error: ReferenceError) {
+			} catch (error: Error) {
 				// Unable to retrieve property value.
 				trace("Failed to retrieve value for property " + name + ": " + error.message);
 				return null;
