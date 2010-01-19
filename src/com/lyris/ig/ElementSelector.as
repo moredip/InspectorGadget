@@ -16,10 +16,10 @@ package com.lyris.ig
 		}
 		
 		public function exists( xpath:String ):Boolean {
-			return findUid(xpath) != null;
+			return find(xpath) != null;
 		}
 
-		public function findUid( xpath:String ):DisplayObject {
+		public function find( xpath:String ):DisplayObject {
 			trace( 'selecting: '+xpath );
 			
 			if( !_domWalker) walkDom();

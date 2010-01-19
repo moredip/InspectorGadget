@@ -17,7 +17,7 @@
 	import mx.controls.Alert;
 	import mx.core.Application;
 	private function onFind():void {
-		var element:DisplayObject = elementSelector.findUid(tiSelector.text);
+		var element:DisplayObject = elementSelector.find(tiSelector.text);
 		
 		if( null != element ) {
 			Alert.show( 'found '+element.name );
