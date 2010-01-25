@@ -3,11 +3,11 @@ package com.lyris.ig
 	import flash.display.DisplayObject;
 	import sfapi.core.ICustomElementSelector;
 	
-	public class XpathElementSelector implements sfapi.core.ICustomElementSelector
+	public class XPathElementSelector implements sfapi.core.ICustomElementSelector
 	{
 		private var _elementSelector:ElementSelector;
 		
-		public function SfapiElementSelector( root:DisplayObject )
+		public function XPathElementSelector( root:DisplayObject )
 		{
 			_elementSelector = new ElementSelector( root );
 		}
@@ -16,6 +16,5 @@ package com.lyris.ig
 		{
 			return _elementSelector.find(xpath);
 		}
-		
 	}
 }

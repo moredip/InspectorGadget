@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties version="1">
   <includeClasses>
-    <classEntry path="sfapi.core.ICustomElementSelector"/>
-    <classEntry path="com.lyris.ig.ElementSelector"/>
+    <classEntry path="com.lyris.ig.DisplayObjectToXmlConverter"/>
     <classEntry path="com.lyris.ig.DomWalker"/>
     <classEntry path="com.lyris.ig.ElementFinder"/>
-    <classEntry path="com.lyris.ig.DisplayObjectToXmlConverter"/>
+    <classEntry path="com.lyris.ig.ElementSelector"/>
+    <classEntry path="com.lyris.ig.XPathElementSelector"/>
+    <classEntry path="sfapi.core.ICustomElementSelector"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
